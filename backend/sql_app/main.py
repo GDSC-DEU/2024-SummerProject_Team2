@@ -37,21 +37,21 @@ def get_db():
 
 @app.get("/")
 async def root():
-    return {"message": "Hello World"}
+    return {"message": "분리배출 합시다 !"}
 
 
-@app.get("/allproblems", response_model=List[schemas.AllProblem])
-def show_allproblems(skip: int = 0, db: Session = Depends(get_db)):
-    allproblems = crud.show_allproblems(db, skip=skip)
-    if not allproblems:
-        raise HTTPException(status_code=404, detail="All problems not found")
-    return allproblems
+@app.get("/battery", response_model=List[schemas.BatteryLocation])
+def show_battery_location(skip: int = 0, db: Session = Depends(get_db)):
+    battery = crud.show_battery_location(db, skip=skip)
+    if not battery:
+        raise HTTPException(status_code=404, detail="Battery Location not found")
+    return battery
 
-@app.get("/unsolved",response_model=List[schemas.UnsovledProblem])
-def show_unsolved(skip: int = 0, db: Session = Depends(get_db)):
-    unsolved = crud.show_unsolved_problem(db, skip=skip)
-    if not unsolved:
-        raise HTTPException(status_code=404, detail="All problems not found")
-    return unsolved
+# @app.get("/unsolved",response_model=List[schemas.UnsovledProblem])
+# def show_unsolved(skip: int = 0, db: Session = Depends(get_db)):
+#     unsolved = crud.show_unsolved_problem(db, skip=skip)
+#     if not unsolved:
+#         raise HTTPException(status_code=404, detail="All problems not found")
+#     return unsolved
 
 

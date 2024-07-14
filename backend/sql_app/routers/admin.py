@@ -5,10 +5,9 @@ router = APIRouter()
 
 @router.get("/dashboard")
 async def get_dashboard_data():
-    # 대시보드 데이터를 반환하는 로직
     return {"message": "Admin Dashboard Data"}
 
-# 다른 관리자 관련 라우터들 추가
+
 @router.get("/status")
 def get_status():
     cpu_usage = psutil.cpu_percent(interval=1)
