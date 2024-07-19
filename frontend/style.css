@@ -1,0 +1,302 @@
+body {
+  font-family: Arial, sans-serif;
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  z-index: 999;
+}
+
+/* Navigation bar */
+#gnb_root {
+  display: flex;
+  align-items: center;
+  position: fixed;
+  width: 100%;
+  z-index: 999;
+}
+
+.navBar {
+  background-color: white;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  width: 100%;
+  border-bottom: 10px double #85c124;
+  z-index: 999;
+
+  font-family: "Do Hyeon", sans-serif;
+  font-weight: 400;
+}
+
+@media screen and (min-width: 768px) {
+  .nav_contents {
+    max-width: 120rem;
+  }
+}
+
+.nav_contents {
+  padding: 1.2rem 2rem;
+  height: 5.6rem;
+  box-sizing: border-box;
+  justify-content: space-between;
+  display: flex;
+  align-items: center;
+  width: 100%;
+  margin: 0 auto;
+  position: relative;
+}
+
+/* 홈화면 이동 */
+.nav_contents a {
+  font-size: 1.5em;
+  text-decoration: none;
+  color: #85c124;
+}
+
+/* 회원가입, 로그인 버튼 */
+.nav_contents ul {
+  list-style: none;
+  display: flex;
+  gap: 1em;
+}
+
+.nav_contents ul li {
+  display: inline-block;
+  list-style: none;
+}
+
+/* 검색창 */
+.nav_contents .search-container {
+  /*width: max-content;*/
+  width: 40%;
+  justify-content: space-between;
+  display: flex;
+  align-items: center;
+  padding: 14px;
+  background: #85c124;
+  border-radius: 28px;
+}
+
+.nav_contents .search-container input {
+  width: 90%;
+  display: block;
+  font-size: 1.4em;
+  outline: none;
+  border: none;
+  background: transparent;
+  color: white;
+
+  font-family: "Nanum Gothic", sans-serif;
+  font-weight: 400;
+}
+
+.nav_contents .search-container input::placeholder {
+  color: white;
+}
+
+.material-symbols-outlined {
+  color: white;
+}
+
+main {
+  padding: 2em;
+  display: flex;
+  gap: 2em;
+  padding-top: 8rem;
+}
+
+/* sign in/out main */
+.sign {
+  padding-top: 2rem;
+  justify-content: center;
+}
+
+.contents {
+  width: 100%;
+
+  font-family: "Nanum Gothic", sans-serif;
+  font-weight: 400;
+}
+
+/* 요일별 분리수거일 컨테이너 */
+.contents .firstRow {
+  width: 100%;
+  height: 440px;
+}
+
+.contents .firstRow .daily {
+  width: 100%;
+  height: 100%;
+}
+
+/* 대형폐기물, 근처 수거함 */
+.contents .secondRow {
+  width: 100%;
+  height: 350px;
+  display: flex;
+  margin-top: 2em;
+  gap: 1em;
+}
+
+/* 대형 */
+.contents .secondRow .oversizedWaste {
+  width: 100%;
+  height: 100%;
+  display: flex;
+  background-color: #aa7b08;
+  border-radius: 50px;
+  text-align: center;
+  align-items: center;
+  justify-content: center;
+  color: white;
+  font-size: 50px;
+  cursor: pointer;
+}
+
+/* 근처 */
+.contents .secondRow .near {
+  width: 100%;
+  height: 100%;
+  display: flex;
+  background-color: #f7d300;
+  border-radius: 50px;
+  text-align: center;
+  align-items: center;
+  justify-content: center;
+  color: white;
+  font-size: 50px;
+  cursor: pointer;
+}
+
+/* 최하단 정보 */
+footer {
+  background-color: #333;
+  color: white;
+  padding: 1em 2em;
+  text-align: center;
+}
+
+footer a {
+  color: #ccc;
+  text-decoration: none;
+  margin: 0 0.5em;
+}
+
+/*swiper css*/
+.swiper {
+  width: 100%;
+  height: 100%;
+}
+
+#swiper-slide {
+  vertical-align: middle;
+  text-align: center;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.swiper-slide {
+  font-size: 40px;
+
+  background: #9fb609;
+  border-radius: 50px;
+  color: white;
+}
+
+.swiper-slide img {
+  display: block;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.swiper-slide-next {
+  background: #578507;
+}
+
+@media screen and (max-width: 1000px) {
+  .swiper-slide {
+    background: #9fb609;
+  }
+  .swiper-slide-active {
+    background: #578507;
+  }
+}
+
+/* 로그인 */
+.login-wrapper {
+  width: 400px;
+  padding: 40px;
+  box-sizing: border-box;
+  border-radius: 30px;
+}
+
+.login-wrapper a {
+  font-size: 50px;
+  text-decoration: none;
+  color: #578507;
+}
+
+.toMain {
+  display: flex;
+  justify-content: center;
+  margin-bottom: 30px;
+
+  font-family: "Do Hyeon", sans-serif;
+  font-weight: 400;
+}
+
+#login-form > input {
+  width: 100%;
+  height: 48px;
+  padding: 0 10px;
+  box-sizing: border-box;
+  margin-bottom: 16px;
+  border-radius: 6px;
+  background-color: #f8f8f8;
+
+  font-family: "Nanum Gothic", sans-serif;
+  font-weight: 400;
+}
+
+#login-form input::placeholder {
+  color: #4a4a4a;
+}
+
+#login-form > input[type="submit"] {
+  color: #fff;
+  font-size: 22px;
+  background-color: #578507;
+  margin-top: 20px;
+}
+
+.signToSign {
+  display: flex;
+  justify-content: center;
+}
+
+.signToSign a {
+  font-size: 15px;
+  text-decoration: none;
+  color: #578507;
+}
+
+/* select box 디자인 */
+#gugun {
+  width: 30%;
+  height: 30px;
+  padding: 0 10px;
+  box-sizing: border-box;
+  margin-bottom: 16px;
+  border-radius: 6px;
+  background-color: #f8f8f8;
+  border-color: #333;
+
+  font-family: "Nanum Gothic", sans-serif;
+  font-weight: 400;
+}
+
+option {
+  height: 25px;
+}
