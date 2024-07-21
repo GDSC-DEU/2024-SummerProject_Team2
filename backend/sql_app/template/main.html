@@ -4,7 +4,7 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>부산분리배출</title>
-    <link rel="stylesheet" href="style.css" />
+    <link rel="stylesheet" href="/static/css/style.css" />
     <!-- fonts -->
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
@@ -32,7 +32,7 @@
       <!-- navbar -->
       <div id="nav-placeholder">
         <script>
-          $.get("navigation.html", function (data) {
+          $.get("/static/navigation.html", function (data) {
             $("#nav-placeholder").replaceWith(data);
           });
         </script>
@@ -59,7 +59,6 @@
                 <div id="swiper-slide" class="swiper-slide">목요일</div>
                 <div id="swiper-slide" class="swiper-slide">금요일</div>
                 <div id="swiper-slide" class="swiper-slide">토요일</div>
-                <!-- 오늘 날짜를 시작점으로 잡기 위해서 2배의 데이터.. 더 나은 방법이 있을듯 -->
               </div>
               <div class="swiper-pagination"></div>
             </div>
@@ -74,7 +73,7 @@
               function getInitialSlide() {
                 const width = window.innerWidth;
                 const d = new Date();
-                const day = d.getDay(); // 0 (일요일)부터 6 (토요일)까지의 요일 인덱스
+                const day = d.getDay();
 
                 if (width >= 1000) {
                   return (day + 6) % 7;
@@ -85,7 +84,7 @@
 
               function initializeSwiper() {
                 if (swiper) {
-                  swiper.destroy(true, true); // 기존의 swiper 인스턴스를 완전히 제거합니다.
+                  swiper.destroy(true, true);
                 }
 
                 swiper = new Swiper(".mySwiper", {
@@ -98,7 +97,7 @@
                     1000: {
                       slidesPerView: 4,
                       spaceBetween: 10,
-                      initialSlide: getInitialSlide(), // 화면 크기 변화에 따라 동적으로 설정
+                      initialSlide: getInitialSlide(),
                     },
                   },
                 });
@@ -110,13 +109,10 @@
           </div>
         </div>
         <div class="secondRow">
-          <div
-            class="oversizedWaste"
-            onclick="location.href='oversize_waste.html'"
-          >
+          <div class="oversizedWaste" onclick="location.href='/oversize_waste'">
             대형폐기물<br />처리방침
           </div>
-          <div class="near" onclick="location.href='near.html'">
+          <div class="near" onclick="location.href='/near'">
             근처 수거함<br />위치
           </div>
         </div>
@@ -126,6 +122,6 @@
       <p>© 2024 GDSC Summer Project Team-2. All rights reserved.</p>
       <a href="#">이용 약관</a> | <a href="#">개인정보 처리방침</a>
     </footer>
-    <script src="scripts.js"></script>
+    <script src="/static/js/main.js"></script>
   </body>
 </html>

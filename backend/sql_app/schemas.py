@@ -1,5 +1,5 @@
 from typing import List, Optional
-from pydantic import BaseModel
+from pydantic import BaseModel,EmailStr
 
 class BatteryLocation(BaseModel):
     number: int
@@ -10,3 +10,10 @@ class BatteryLocation(BaseModel):
     class Config:
         orm_mode = True
 
+class UserRegister(BaseModel):
+    email: str
+    password: str
+    user_name: str
+
+    class Config:
+        orm_mode = True
