@@ -4,7 +4,7 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>부산분리배출</title>
-    <link rel="stylesheet" href="/static/css/style.css" />
+    <link rel="stylesheet" href="../static/css/style.css" />
     <!-- fonts -->
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
@@ -32,7 +32,7 @@
       <!-- navbar -->
       <div id="nav-placeholder">
         <script>
-          $.get("/static/navigation.html", function (data) {
+          $.get("../static/navigation.html", function (data) {
             $("#nav-placeholder").replaceWith(data);
           });
         </script>
@@ -109,10 +109,13 @@
           </div>
         </div>
         <div class="secondRow">
-          <div class="oversizedWaste" onclick="location.href='/oversize_waste'">
+          <div
+            class="oversizedWaste"
+            onclick="location.href='oversize_waste.html'"
+          >
             대형폐기물<br />처리방침
           </div>
-          <div class="near" onclick="location.href='/near'">
+          <div class="near" onclick="location.href='near.html'">
             근처 수거함<br />위치
           </div>
         </div>
