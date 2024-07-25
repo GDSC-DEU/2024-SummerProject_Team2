@@ -4,7 +4,7 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>부산분리배출</title>
-    <link rel="stylesheet" href="/static/css/style.css" />
+    <link rel="stylesheet" href="../static/css/style.css" />
     <!-- fonts -->
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
@@ -32,7 +32,7 @@
       <!-- navbar -->
       <div id="nav-placeholder">
         <script>
-          $.get("/static/navigation.html", function (data) {
+          $.get("../static/navigation.html", function (data) {
             $("#nav-placeholder").replaceWith(data);
           });
         </script>
@@ -40,6 +40,27 @@
     </div>
     <main>
       <div class="contents">
+        <div class="region">
+          <select id="gugun" name="gugun">
+            <option value="">-구/군 선택-</option>
+            <option value="gangseo">강서구</option>
+            <option value="geumjeong">금정구</option>
+            <option value="nam">남구</option>
+            <option value="dong">동구</option>
+            <option value="dongnae">동래구</option>
+            <option value="busanjin">부산진구</option>
+            <option value="buk">북구</option>
+            <option value="sasang">사상구</option>
+            <option value="saha">사하구</option>
+            <option value="seo">서구</option>
+            <option value="suyeong">수영구</option>
+            <option value="yeonje">연제구</option>
+            <option value="yeongdo">영도구</option>
+            <option value="jung">중구</option>
+            <option value="haeundae">해운대구</option>
+            <option value="gijang">기장군</option>
+          </select>
+        </div>
         <div class="firstRow">
           <div id="daily" class="daily">
             <!-- Swiper -->
@@ -61,6 +82,9 @@
                 <div id="swiper-slide" class="swiper-slide">토요일</div>
               </div>
               <div class="swiper-pagination"></div>
+              <!-- 추가: 네비게이션 버튼 -->
+              <div class="swiper-button-next"></div>
+              <div class="swiper-button-prev"></div>
             </div>
 
             <!-- Swiper JS -->
@@ -93,6 +117,10 @@
                   spaceBetween: 10,
                   speed: 1000,
                   initialSlide: getInitialSlide(),
+                  navigation: {
+                    nextEl: ".swiper-button-next",
+                    prevEl: ".swiper-button-prev",
+                  },
                   breakpoints: {
                     1000: {
                       slidesPerView: 4,
@@ -109,11 +137,28 @@
           </div>
         </div>
         <div class="secondRow">
-          <div class="oversizedWaste" onclick="location.href='/oversize_waste'">
-            대형폐기물<br />처리방침
+          <div
+            class="oversizedWaste"
+            onclick="location.href='oversize_waste.html'"
+          >
+            <div class="overText">대형폐기물<br />처리방침</div>
+            <img
+              class="oversizeImg"
+              src="https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEhvfg1mwXX7EDIi1uc8l1Qcb6u2e8sVpFzSuTX-78sgi9IWdkJWKhXsyLdUSR6h3cCCT8G72fhAErVIezbGLuVKJgZ5n8plsIllzSCnqcObgPlNkT1oulVgqP1ZWqdaFyLH2lQGBH4XjK8/s800/sodai_gomi.png"
+            />
           </div>
-          <div class="near" onclick="location.href='/near'">
-            근처 수거함<br />위치
+          <div class="near" onclick="location.href='near.html'">
+            <div class="nearText">근처 수거함<br />위치</div>
+            <div class="imgWrapper">
+              <img
+                class="battery2"
+                src="https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEh80HLM1R_zgX3BRk0ICBuvGrVP_C_Yuf8l2TFqVVmRxTioAlHy8FvcFRMqx4Z1PIuKucFcGiFhcwv9MfaIOIw5q9wCsAVAyYeN59o_J_FsTXH_ZnjBg_5WxC6676J9aCgZ03DfOKz_2K6g/s300/battery_tan1.png"
+              />
+              <img
+                class="battery1"
+                src="https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEj0jdFgDMT1UNb4NLFZxPmM8TFbPnpMixuU8DgCwR-PJmawxrUsemRbFD8XBxrw1Qf9LyCEcI2KfSO6mu9XVXNbGyNWGREHJqhlMtbKZk5E9mKywB0dMZER1jE_qAqLw7Dwi6TIUnyQlDzw/s300/battery_tan4.png"
+              />
+            </div>
           </div>
         </div>
       </div>

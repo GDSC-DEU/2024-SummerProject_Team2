@@ -1,14 +1,31 @@
 <div class="navBar">
   <div class="nav_contents">
-    <a href="/"> 2팀프젝 </a>
+    <a href="../template/main.html"> 2팀프젝 </a>
     <div class="search-container">
       <input type="text" id="search" placeholder="이건 어떻게 버리지?" />
-      <span class="material-symbols-outlined"> search </span>
+      <span
+        id="searchBtn"
+        class="material-symbols-outlined"
+        onclick="location.href='../template/search.html'"
+      >
+        search
+      </span>
+      <!-- 엔터키 검색 기능 -->
+      <script>
+        var input = document.getElementById("search");
+
+        input.addEventListener("keyup", function (event) {
+          if (event.keyCode === 13) {
+            event.preventDefault();
+            document.getElementById("searchBtn").click();
+          }
+        });
+      </script>
     </div>
     <nav class="nav_link">
       <ul class="sign_log">
-        <li><a href="/sign_up">회원가입</a></li>
-        <li><a href="/sign_in">로그인</a></li>
+        <li><a href="../template/sign_up.html">회원가입</a></li>
+        <li><a href="../template/sign_in.html">로그인</a></li>
       </ul>
     </nav>
   </div>
