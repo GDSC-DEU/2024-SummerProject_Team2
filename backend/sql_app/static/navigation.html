@@ -4,11 +4,23 @@
     <div class="search-container">
       <input type="text" id="search" placeholder="이건 어떻게 버리지?" />
       <span
+        id="searchBtn"
         class="material-symbols-outlined"
         onclick="location.href='../template/search.html'"
       >
         search
       </span>
+      <!-- 엔터키 검색 기능 -->
+      <script>
+        var input = document.getElementById("search");
+
+        input.addEventListener("keyup", function (event) {
+          if (event.keyCode === 13) {
+            event.preventDefault();
+            document.getElementById("searchBtn").click();
+          }
+        });
+      </script>
     </div>
     <nav class="nav_link">
       <ul class="sign_log">
