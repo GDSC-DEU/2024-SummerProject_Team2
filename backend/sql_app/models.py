@@ -14,8 +14,9 @@ class BatteryLocation(Base):
 
 class User(Base):
     __tablename__ = 'user'
-    email = Column(String(50), primary_key=True, index=True,nullable=False)
-    user_name = Column(String(50), nullable=False)
-    password = Column(String(50), nullable=False)
 
+    email = Column(String(50), unique=True, nullable=False, primary_key=True)
+    user_name = Column(String(50), nullable=False)
+    password = Column(String(300), nullable=False)
+    region = Column(String(50),nullable=False)
     #user = relationship("User", back_populates="items")

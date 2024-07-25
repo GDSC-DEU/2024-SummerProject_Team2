@@ -53,5 +53,3 @@ def show_battery_location(skip: int = 0, db: Session = Depends(get_db)):
         raise HTTPException(status_code=404, detail="Battery Location not found")
     return battery
 
-
-

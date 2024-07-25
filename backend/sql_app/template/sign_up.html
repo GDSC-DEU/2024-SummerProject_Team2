@@ -17,20 +17,12 @@
     <main class="sign">
       <div class="login-wrapper">
         <div class="toMain"><a href="/"> 2팀프젝 </a></div>
-        <form method="post" action="서버의url" id="login-form">
-          <!-- 나중에 action 통해 서버로 데이터 전송하고 redirection? 하는
-          방향으로 -->
-          <input type="text" name="userName" placeholder="이메일" />
-          <input type="password" name="userPassword" placeholder="비밀번호" />
-          <input
-            type="password"
-            name="userPassword"
-            placeholder="비밀번호 확인"
-          />
-          <!-- <label for="remember-check">
-            <input type="checkbox" id="remember-check" />아이디 저장하기
-          </label> -->
-          <select id="gugun" name="gugun">
+        <form id="login-form">
+          <input type="text" name="userName" placeholder="이메일" required />
+          <input type="password" name="userPassword" placeholder="비밀번호" required />
+          <input type="password" name="userPasswordConfirm" placeholder="비밀번호 확인" required />
+          <input type="text" name="userNickname" placeholder="닉네임" required />
+          <select id="gugun" name="gugun" required>
             <option value="">-구/군 선택-</option>
             <option value="gangseo">강서구</option>
             <option value="geumjeong">금정구</option>
@@ -55,5 +47,44 @@
         </form>
       </div>
     </main>
+
+    <script>
+      document.getElementById('login-form').addEventListener('submit', async function(event) {
+        event.preventDefault();
+
+        const form = event.target;
+        const email = form.userName.value;
+        const password = form.userPassword.value;
+        const passwordConfirm = form.userPasswordConfirm.value;
+        const nickname = form.userNickname.value;
+        const region = form.gugun.value;
+
+        if (password !== passwordConfirm) {
+          alert('비밀번호가 일치하지 않습니다.');
+          return;
+        }
+
+        const response = await fetch('/users/signup', {
+          method: 'POST',
+          headers: {
+            'Content-Type': 'application/json',
+          },
+          body: JSON.stringify({
+            email: email,
+            password: password,
+            user_name: nickname,
+            region: region,
+          }),
+        });
+
+        if (response.ok) {
+          alert('회원가입 성공!');
+          window.location.href = '/sign_in';
+        } else {
+          const errorData = await response.json();
+          alert('회원가입 실패: ' + errorData.detail);
+        }
+      });
+    </script>
   </body>
 </html>
