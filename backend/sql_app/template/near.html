@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html lang="ko">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta
+      name="viewport"
+      content="width=device-width, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0, user-scalable=no"
+    />
+    <title>부산분리배출</title>
+    <link rel="stylesheet" href="../static/css/style.css" />
+    <!-- 폰트 -->
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Do+Hyeon&family=Nanum+Gothic&display=swap"
+      rel="stylesheet"
+    />
+    <!-- 검색 아이콘 -->
+    <link
+      rel="stylesheet"
+      href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@24,400,0,0"
+    />
+    <!-- 네비게이션 바 재사용 -->
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <!-- 네이버맵 인증키 -->
+    <script
+      type="text/javascript"
+      src="https://oapi.map.naver.com/openapi/v3/maps.js?ncpClientId=nqswh19jjg"
+    ></script>
+  </head>
+  <body>
+    <div id="gnb_root">
+      <!-- 네비게이션 바 -->
+      <div id="nav-placeholder">
+        <script>
+          $.get("../static/navigation.html", function (data) {
+            $("#nav-placeholder").replaceWith(data);
+          });
+        </script>
+      </div>
+    </div>
+    <main class="nearMain">
+      <div id="map" style="width: 100%; height: 100%"></div>
+    </main>
+    <script>
+      var map = new naver.maps.Map("map", {
+        center: new naver.maps.LatLng(35.13353, 129.0918),
+        zoom: 15,
+        mapTypeId: naver.maps.MapTypeId.NORMAL,
+      });
+
+      function placeMarkers(coordinates) {
+        coordinates.forEach(function (coord) {
+          var marker = new naver.maps.Marker({
+            position: new naver.maps.LatLng(coord.latitude, coord.longitude),
+            map: map,
+          });
+        });
+      }
+
+      function loadMarkers() {
+        $.ajax({
+          url: "http://localhost:8000/battery_coordinates/?skip=0",
+          method: "GET",
+          dataType: "json",
+          success: function (data) {
+            placeMarkers(data);
+          },
+          error: function (error) {
+            console.log("Error fetching data: ", error);
+          },
+        });
+      }
+
+      function getUserLocation() {
+        if (navigator.geolocation) {
+          navigator.geolocation.getCurrentPosition(
+            function (position) {
+              var location = new naver.maps.LatLng(
+                position.coords.latitude,
+                position.coords.longitude
+              );
+
+              map.setCenter(location);
+              map.setZoom(15);
+
+              loadMarkers();
+            },
+            function () {
+              console.log("Geolocation failed");
+              loadMarkers();
+            }
+          );
+        } else {
+          console.log("Geolocation not supported");
+          loadMarkers();
+        }
+      }
+
+      $(window).on("load", function () {
+        getUserLocation();
+      });
+    </script>
+  </body>
+</html>

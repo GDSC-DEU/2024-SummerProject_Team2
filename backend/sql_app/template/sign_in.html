@@ -52,7 +52,8 @@
 
         if (response.ok) {
           const data = await response.json();
-          alert('로그인 성공!');
+          alert('Hello GDSC!');
+          window.location.href = '/';
           // 로그인 성공 시 처리 로직 추가 (예: 토큰 저장, 페이지 리디렉션)
         } else {
           const errorData = await response.json();
