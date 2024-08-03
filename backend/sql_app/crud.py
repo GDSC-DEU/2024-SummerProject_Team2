@@ -1,7 +1,12 @@
 from sqlalchemy.orm import Session
-
+import jwt
 from . import models, schemas
 from passlib.context import CryptContext
+from datetime import datetime, timedelta, timezone
+import os
+SECRET_KEY = os.getenv("SECRET_KEY")
+ALGORITHM = os.getenv("ALGORITHM")
+ACCESS_TOKEN_EXPIRE_MINUTES = 60
 
 pwd_context = CryptContext(schemes=["bcrypt"], deprecated="auto")
 
@@ -26,4 +31,12 @@ def create_user(user: schemas.UserRegister,db: Session):
     db.add(db_user)
     db.commit()
     
-
+def create_access_token(data: dict, expires_delta: timedelta | None = None):
+    to_encode = data.copy()
+    if expires_delta:
+        expire = datetime.now(timezone.utc) + expires_delta
+    else:
+        expire = datetime.now(timezone.utc) + timedelta(minutes=15)
+    to_encode.update({"exp": expire})
+    encoded_jwt = jwt.encode(to_encode, SECRET_KEY, algorithm=ALGORITHM)
+    return encoded_jwt
