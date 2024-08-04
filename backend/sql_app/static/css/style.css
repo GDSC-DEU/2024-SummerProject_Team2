@@ -231,6 +231,7 @@ footer a {
   display: flex;
   justify-content: center;
   align-items: center;
+  flex-direction: column;
 }
 
 .swiper-slide {
@@ -241,11 +242,13 @@ footer a {
   color: white;
 }
 
-.swiper-slide img {
-  display: block;
-  width: 100%;
-  height: 100%;
-  object-fit: cover;
+.swiper-slide > .daily_contents {
+  display: flex;
+  height: 70%;
+  align-items: center;
+
+  font-size: 30px;
+  font-weight: bold;
 }
 
 .swiper-slide-next {
@@ -386,4 +389,56 @@ option {
 
 .S_main {
   gap: 4em;
+}
+
+/* 대형폐기물 텝메뉴 */
+.tab_menu {
+  overflow: hidden;
+  padding: 1px;
+  display: flex;
+  width: 40%;
+}
+.tab_menu > ul {
+  display: flex;
+  padding: 0;
+  margin: 0;
+  list-style: none;
+  flex-grow: 1;
+}
+.tab_menu > ul > li {
+  flex-grow: 1;
+}
+.tab_menu ul li a {
+  display: block;
+  border: #d0d0d0 solid 1px;
+  background-color: #f4f4f4;
+  line-height: 22px;
+  padding: 16px 0;
+  text-align: center;
+  color: #333333;
+  font-weight: 600;
+  text-decoration: none;
+}
+
+.tab_menu ul li.on a,
+.tab_menu ul li a:hover {
+  background-color: #578507;
+  color: #fff;
+}
+
+.ovMain {
+  display: flex;
+  flex-direction: column;
+}
+
+.tab_menu > ul > .active > a {
+  display: block;
+  border: #d0d0d0 solid 1px;
+  background-color: #578507;
+  color: #fff;
+  line-height: 22px;
+  padding: 16px 0;
+  text-align: center;
+  font-weight: 600;
+  text-decoration: none;
 }
