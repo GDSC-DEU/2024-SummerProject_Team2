@@ -12,7 +12,6 @@ class BatteryLocation(Base):
     data_reference_date = Column(String(50),nullable=False)
     latitude = Column(Float(50),nullable=False)
     longitude = Column(Float(50),nullable=False)
-    #battery = relationship("Battery", back_populates="owner")
 
 
 class User(Base):
@@ -22,5 +21,5 @@ class User(Base):
     user_name = Column(String(50), nullable=False)
     password = Column(String(300), nullable=False)
     region = Column(String(50),nullable=False)
-    #user = relationship("User", back_populates="items")
+    is_active = Column(Boolean,default=True)
 

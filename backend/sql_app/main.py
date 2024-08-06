@@ -58,3 +58,4 @@ def show_battery_location(skip: int = 0, db: Session = Depends(get_db)):
 def get_battery_coordinates(skip: int = 0, db: Session = Depends(get_db)):
     coordinates = crud.show_battery_coordinates(db, skip=skip)
     return coordinates
+

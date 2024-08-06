@@ -1,6 +1,7 @@
 from fastapi import APIRouter,Response,Request
+from typing import Annotated
 from sqlalchemy.orm import Session
-from sql_app import schemas, crud, database
+from sql_app import schemas, crud, database, models
 from fastapi import APIRouter, Depends, HTTPException
 from fastapi.security import OAuth2PasswordRequestForm
 from sql_app import schemas, crud, database
@@ -49,4 +50,9 @@ async def signout(response: Response,request: Request):
     response.delete_cookie(key="access_token")
 
     return HTTPException(status_code=200, detail="로그아웃 성공")
-# 다른 사용자 관련 라우터들 추가
+
+# @router.get("/me", response_model=models.User)
+# async def read_users_me(
+#     current_user: Annotated[models.User, Depends(crud.get_current_active_user)],
+# ):
+#     return current_user

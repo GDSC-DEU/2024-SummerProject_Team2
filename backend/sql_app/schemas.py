@@ -14,6 +14,9 @@ class Token(BaseModel):
     access_token: str
     token_type: str
 
+class TokenData(BaseModel):
+    username: str | None = None
+
 class BatteryCoordinates(BaseModel):
     latitude: float
     longitude: float
@@ -25,13 +28,25 @@ class UserRegister(BaseModel):
     password: str
     user_name: str
     region: str
+
     @validator('email','user_name','region','password')
     def check_empty(cls, v):
         if v == '':
             raise ValueError('항목을 모두 입력해주세요')
         return v
+    
     @validator('password')
     def validate_password(cls, v):
         if len(v) < 8:
             raise ValueError('비밀번호는 8자 이상이어야 합니다')
         return v
+    
+# class UserBase(BaseModel):
+#     email: EmailStr
+
+# class User(UserBase):
+#     email: str
+#     is_active: bool
+
+#     class Config:
+#         orm_mode = True
