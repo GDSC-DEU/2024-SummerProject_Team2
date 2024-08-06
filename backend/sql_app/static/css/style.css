@@ -28,12 +28,6 @@ body {
   font-weight: 400;
 }
 
-@media screen and (min-width: 768px) {
-  .nav_contents {
-    max-width: 120rem;
-  }
-}
-
 .nav_contents {
   padding: 1.2rem 2rem;
   height: 5.6rem;
@@ -97,6 +91,86 @@ body {
 .material-symbols-outlined {
   color: white;
   cursor: pointer;
+}
+
+@media screen and (min-width: 768px) {
+  .navBar {
+    background-color: white;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    width: 100%;
+    border-bottom: 10px double #85c124;
+    z-index: 999;
+
+    font-family: "Do Hyeon", sans-serif;
+    font-weight: 400;
+  }
+
+  .nav_contents {
+    padding: 1.2rem 2rem;
+    height: 5.6rem;
+    box-sizing: border-box;
+    justify-content: space-between;
+    display: flex;
+    align-items: center;
+    width: 100%;
+    margin: 0 auto;
+    position: relative;
+  }
+
+  /* 홈화면 이동 */
+  .nav_contents a {
+    font-size: 1.5em;
+    text-decoration: none;
+    color: #85c124;
+  }
+
+  /* 회원가입, 로그인 버튼 */
+  .nav_contents ul {
+    list-style: none;
+    display: flex;
+    gap: 1em;
+  }
+
+  .nav_contents ul li {
+    display: inline-block;
+    list-style: none;
+  }
+
+  /* 검색창 */
+  .nav_contents .search-container {
+    /*width: max-content;*/
+    width: 40%;
+    justify-content: space-between;
+    display: flex;
+    align-items: center;
+    padding: 14px;
+    background: #85c124;
+    border-radius: 28px;
+  }
+
+  .nav_contents .search-container input {
+    width: 90%;
+    display: block;
+    font-size: 1.4em;
+    outline: none;
+    border: none;
+    background: transparent;
+    color: white;
+
+    font-family: "Nanum Gothic", sans-serif;
+    font-weight: 400;
+  }
+
+  .nav_contents .search-container input::placeholder {
+    color: white;
+  }
+
+  .material-symbols-outlined {
+    color: white;
+    cursor: pointer;
+  }
 }
 
 main {
@@ -441,4 +515,165 @@ option {
   text-align: center;
   font-weight: 600;
   text-decoration: none;
+}
+
+/* 반응형 웹 디자인을 위한 미디어 쿼리 추가 */
+@media screen and (max-width: 1200px) {
+  .nav_contents {
+    padding: 1rem;
+  }
+
+  .nav_contents a {
+    font-size: 1.4em;
+  }
+
+  .nav_contents .search-container {
+    width: 50%;
+    padding: 12px;
+  }
+
+  .nav_contents .search-container input {
+    font-size: 1.2em;
+  }
+
+  .contents .secondRow .oversizedWaste,
+  .contents .secondRow .near {
+    font-size: 4.5vw;
+  }
+
+  .left,
+  .left > img {
+    width: 50vw;
+  }
+
+  .right {
+    font-size: 2vw;
+  }
+}
+
+@media screen and (max-width: 1000px) {
+  .nav_contents {
+    padding: 0.8rem;
+  }
+
+  .nav_contents a {
+    font-size: 1.3em;
+  }
+
+  .nav_contents .search-container {
+    width: 60%;
+    padding: 10px;
+  }
+
+  .nav_contents .search-container input {
+    font-size: 1.1em;
+  }
+
+  .contents .secondRow .oversizedWaste,
+  .contents .secondRow .near {
+    font-size: 4.8vw;
+  }
+
+  .left,
+  .left > img {
+    width: 60vw;
+  }
+
+  .right {
+    font-size: 2.2vw;
+  }
+
+  .tab_menu {
+    width: 60%;
+  }
+}
+
+@media screen and (max-width: 768px) {
+  .nav_contents {
+    flex-direction: column;
+    align-items: flex-start;
+    padding: 0.5rem;
+  }
+
+  .nav_contents a {
+    font-size: 1.2em;
+  }
+
+  .nav_contents ul {
+    gap: 0.5em;
+  }
+
+  .nav_contents .search-container {
+    width: 80%;
+    padding: 8px;
+  }
+
+  .nav_contents .search-container input {
+    font-size: 1em;
+  }
+
+  main {
+    flex-direction: column;
+    padding-top: 6rem;
+  }
+
+  .contents .secondRow {
+    flex-direction: column;
+    height: auto;
+  }
+
+  .contents .secondRow .oversizedWaste,
+  .contents .secondRow .near {
+    font-size: 5vw;
+  }
+
+  .left,
+  .left > img {
+    width: 80vw;
+  }
+
+  .right {
+    font-size: 2.4vw;
+  }
+
+  .tab_menu {
+    width: 80%;
+  }
+}
+
+@media screen and (max-width: 500px) {
+  .nav_contents {
+    padding: 0.3rem;
+  }
+
+  .nav_contents a {
+    font-size: 1.1em;
+  }
+
+  .nav_contents .search-container {
+    width: 100%;
+    padding: 6px;
+  }
+
+  .nav_contents .search-container input {
+    font-size: 0.9em;
+  }
+
+  .contents .secondRow .oversizedWaste,
+  .contents .secondRow .near {
+    font-size: 5.5vw;
+  }
+
+  .left,
+  .left > img {
+    width: 100vw;
+  }
+
+  .right {
+    font-size: 2.6vw;
+  }
+
+  .tab_menu {
+    width: 100%;
+  }
 }
