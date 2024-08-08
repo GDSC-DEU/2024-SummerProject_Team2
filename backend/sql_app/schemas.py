@@ -10,12 +10,6 @@ class BatteryLocation(BaseModel):
     longitude: float
     class Config:
         orm_mode = True
-class Token(BaseModel):
-    access_token: str
-    token_type: str
-
-class TokenData(BaseModel):
-    username: str | None = None
 
 class BatteryCoordinates(BaseModel):
     latitude: float
@@ -23,12 +17,21 @@ class BatteryCoordinates(BaseModel):
     class Config:
         orm_mode = True
         
-class UserRegister(BaseModel):
+class User(BaseModel):
+    user_name: str
+    email: str | None = None
+    region: str | None = None
+    is_active: bool | None = None
+
+class UserInDB(User):
+    hashed_password: str
+    
+class UserRegister(User):
     email: EmailStr
     password: str
     user_name: str
     region: str
-
+    is_active: bool
     @validator('email','user_name','region','password')
     def check_empty(cls, v):
         if v == '':
@@ -40,13 +43,20 @@ class UserRegister(BaseModel):
         if len(v) < 8:
             raise ValueError('비밀번호는 8자 이상이어야 합니다')
         return v
-    
-# class UserBase(BaseModel):
-#     email: EmailStr
 
-# class User(UserBase):
-#     email: str
-#     is_active: bool
 
-#     class Config:
-#         orm_mode = True
+class Token(BaseModel):
+    access_token: str
+    token_type: str
+
+class TokenData(BaseModel):
+    username: str | None = None
+
+class GPTRequest(BaseModel):
+    text: str
+
+class GPTResponse(BaseModel):
+    품목: str
+    재활용여부: str
+    재활용방법: list[str]
+

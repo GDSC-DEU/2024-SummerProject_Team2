@@ -1,6 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
-  <head>
+<head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>부산분리배출</title>
@@ -8,61 +8,98 @@
     <!-- fonts -->
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-    <link
-      href="https://fonts.googleapis.com/css2?family=Do+Hyeon&family=Nanum+Gothic&display=swap"
-      rel="stylesheet"
-    />
+    <link href="https://fonts.googleapis.com/css2?family=Do+Hyeon&family=Nanum+Gothic&display=swap" rel="stylesheet" />
     <!-- Search icon -->
-    <link
-      rel="stylesheet"
-      href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@24,400,0,0"
-    />
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@24,400,0,0" />
     <!-- Reuse navBar -->
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
-  </head>
-  <body>
+</head>
+<body>
     <div id="gnb_root">
-      <!-- navbar -->
-      <div id="nav-placeholder">
-        <script>
-          $.get("../static/navigation.html", function (data) {
-            $("#nav-placeholder").replaceWith(data);
-          });
-        </script>
-      </div>
+        <!-- navbar -->
+        <div id="nav-placeholder">
+            <script>
+                $.get("../static/navigation.html", function (data) {
+                    $("#nav-placeholder").replaceWith(data);
+                });
+            </script>
+        </div>
     </div>
     <main class="S_main">
-      <!-- 내용부분 -->
-      <div class="left">
-        <img
-          src="https://img.freepik.com/premium-photo/isolated-blue-umbrella_100488-906.jpg"
-        />
-      </div>
-      <div class="right">
-        <h1 class="deco">우산</h1>
-        <div class="recycleAble">
-          <p class="deco">재활용 여부</p>
-          <p>&nbsp:&nbsp</p>
-          <p>불가능</p>
+        <!-- 내용부분 -->
+        <div class="left">
+            <img src="https://img.freepik.com/premium-photo/isolated-blue-umbrella_100488-906.jpg" alt="Image" />
         </div>
-        <div class="recycleHow">
-          <p class="deco">분리수거</p>
-          <p>&nbsp:&nbsp</p>
-          <p>일반</p>
+        <div class="right">
+            <h1 class="deco" id="text">정보를 불러오는 중입니다...</h1>
+            <div class="recycleAble">
+                <p class="deco">재활용 여부&nbsp;&nbsp;</p>
+                <p id="recycle-able">정보를 불러오는 중입니다...</p>
+            </div>
+            <div class="recycleHow">
+                <p class="deco">분리수거 방법</p>
+                <ul id="recycle-method">
+                    <!-- 분리수거 방법을 여기에 추가 -->
+                </ul>
+            </div>
         </div>
-        <div class="warning">
-          <p class="deco">주의 사항</p>
-          <ul>
-            <li>
-              분리 가능하다면 뼈대는 고철로, 손잡이가 플라스틱이면 플라스틱으로,
-              나머지 천과 비닐은 일반 종량제 봉투에 넣어 배출
-            </li>
-            <li>
-              분리가 불가능한 자동우산은 펴지지 않게 묶어서 일반 쓰레기로 배출
-            </li>
-          </ul>
-        </div>
-      </div>
     </main>
-  </body>
+    <!-- JavaScript 코드 -->
+    <script>
+      document.addEventListener('DOMContentLoaded', function() {
+          var queryString = window.location.search; // 쿼리 문자열을 가져옴
+          var queryParams = new URLSearchParams(queryString); // 쿼리 파라미터를 파싱
+      
+          // 'query' 파라미터의 값을 가져옴
+          var queryValue = queryParams.get('query'); 
+          console.log('Query value:', queryValue); // 쿼리 값 확인
+
+          if (queryValue) {
+              // POST 요청 보내기
+              fetch('search/gpt', {
+                  method: 'POST',
+                  headers: {
+                      'Content-Type': 'application/json'
+                  },
+                  body: JSON.stringify({ text: queryValue })
+              })
+              .then(response => {
+                  if (!response.ok) {
+                      throw new Error('Network response was not ok ' + response.statusText);
+                  }
+                  return response.json(); // JSON 응답을 파싱
+              })
+              .then(data => {
+                  console.log('Received data:', data); // 응답 데이터 확인
+                  
+                  // 요소가 존재하는지 확인하고 값 삽입
+                  var textElem = document.getElementById('text');
+                  var recycleAbleElem = document.getElementById('recycle-able');
+                  var recycleMethodList = document.getElementById('recycle-method');
+
+                  if (textElem && recycleAbleElem && recycleMethodList) {
+                      // JSON 데이터 검증 및 기본값 설정
+                      var text = data?.품목 ?? '정보 없음';
+                      var recycleStatus = data?.재활용여부 ?? '정보 없음';
+                      var recycleMethods = Array.isArray(data?.재활용방법) ? data['재활용방법'] : [];
+
+                      textElem.textContent = text;
+                      recycleAbleElem.textContent = recycleStatus;
+
+                      // 분리수거 방법 리스트 초기화 및 추가
+                      recycleMethodList.innerHTML = '';
+                      recycleMethods.forEach(function(method) {
+                          var listItem = document.createElement('li');
+                          listItem.textContent = method;
+                          recycleMethodList.appendChild(listItem);
+                      });
+                  } else {
+                      console.error('One or more elements not found.');
+                  }
+              })
+              .catch(error => console.error('Error:', error)); // 오류 처리
+          }
+      });
+    </script>
+</body>
 </html>

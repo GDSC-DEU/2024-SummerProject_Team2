@@ -2,7 +2,7 @@ from fastapi import Depends, FastAPI, HTTPException, Request
 from fastapi.responses import HTMLResponse
 from sqlalchemy.orm import Session
 from typing import List
-from sql_app.routers import admin, user, example_router
+from sql_app.routers import admin, user, example_router,gpt
 from sql_app.middlewares import add_middlewares
 from . import crud, models, schemas
 from .database import SessionLocal, engine
@@ -33,6 +33,7 @@ app.mount("/static", StaticFiles(directory="sql_app/static"), name="static")
 app.include_router(admin.router, prefix="/admin", tags=["admin"])
 app.include_router(user.router, prefix="/users", tags=["users"])
 app.include_router(example_router.router)
+app.include_router(gpt.router,prefix="/search",tags=["search"])
 
 
 def get_db():

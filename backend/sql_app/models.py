@@ -22,4 +22,3 @@ class User(Base):
     password = Column(String(300), nullable=False)
     region = Column(String(50),nullable=False)
     is_active = Column(Boolean,default=True)
-

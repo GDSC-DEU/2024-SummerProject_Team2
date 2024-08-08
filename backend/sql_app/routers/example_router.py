@@ -35,3 +35,4 @@ async def read_sign_in(request: Request):
 @router.get("/search", response_class=HTMLResponse)
 async def read_sign_in(request: Request):
     return templates.TemplateResponse("search.html", {"request": request})
+
