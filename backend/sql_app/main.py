@@ -17,6 +17,8 @@ app = FastAPI()
 origins = [
     "http://localhost",
     "http://localhost:8000",
+    "https://port-0-test-lz2ubtu86f21b86a.sel4.cloudtype.app/sign_in",
+    "https://port-0-test-lz2ubtu86f21b86a.sel4.cloudtype.app/"
 ]
 
 app.add_middleware(
