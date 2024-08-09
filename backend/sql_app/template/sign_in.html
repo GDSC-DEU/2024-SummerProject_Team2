@@ -34,7 +34,7 @@
         const username = form.username.value;
         const password = form.password.value;
 
-        const response = await fetch('http://localhost:8000/users/signin', {
+        const response = await fetch('/users/signin', {
           method: 'POST',
           headers: {
             'accept': 'application/json',
