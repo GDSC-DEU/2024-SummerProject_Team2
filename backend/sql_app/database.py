@@ -4,7 +4,7 @@ from sqlalchemy.orm import sessionmaker
 import os
 from dotenv import load_dotenv
 
-SQLALCHEMY_DATABASE_URL = "mysql+pymysql://root:1234@113.198.230.24:318/summer"
+SQLALCHEMY_DATABASE_URL = "mysql+pymysql://root:1234@113.198.230.24:318/gdsc"
 #"mysql+pymysql://root:@localhost:3306/gdsc"
 
 engine = create_engine(SQLALCHEMY_DATABASE_URL)
