@@ -110,7 +110,7 @@ main {
   padding: 0 1em 0 1em;
   align-items: center;
   justify-content: center;
-  background-color: #c7e14096;
+  background-color: rgba(199, 204, 194, 0.505);
   height: 100vh;
 }
 
@@ -201,7 +201,7 @@ main {
   width: 100%;
   height: 100%;
   display: flex;
-  background-color: #aa7b08;
+  background-color: #ffaa2b;
   border-radius: 50px;
   text-align: center;
   align-items: center;
@@ -243,7 +243,7 @@ footer a {
 .swiper-slide {
   font-size: 1.5rem;
 
-  background: #9fb609;
+  background: #85c124;
   border-radius: 30px;
   color: white;
 }
@@ -258,7 +258,7 @@ footer a {
 }
 
 .swiper-slide-active {
-  background: #578507;
+  background: #619c03;
 }
 
 /* 로그인 */
@@ -275,7 +275,7 @@ footer a {
 .login-wrapper a {
   font-size: 50px;
   text-decoration: none;
-  color: #578507;
+  color: #619c03;
 }
 
 .toMain {
@@ -307,7 +307,7 @@ footer a {
 #login-form > input[type="submit"] {
   color: #fff;
   font-size: 22px;
-  background-color: #578507;
+  background-color: #929a85;
   margin-top: 20px;
 }
 
@@ -319,7 +319,7 @@ footer a {
 .signToSign a {
   font-size: 15px;
   text-decoration: none;
-  color: #578507;
+  color: #619c03;
 }
 
 /* select box 디자인 */
@@ -387,7 +387,7 @@ option {
 
 .deco {
   width: fit-content;
-  border-bottom: 3px dotted #578507;
+  border-bottom: 3px dotted #619c03;
   padding-bottom: 2px;
 }
 
@@ -427,7 +427,7 @@ option {
 
 .tab_menu ul li.on a,
 .tab_menu ul li a:hover {
-  background-color: #578507;
+  background-color: #619c03;
   color: #fff;
 }
 
@@ -439,7 +439,7 @@ option {
 .tab_menu > ul > .active > a {
   display: block;
   border: #d0d0d0 solid 1px;
-  background-color: #578507;
+  background-color: #619c03;
   color: #fff;
   line-height: 22px;
   padding: 16px 0;
@@ -450,11 +450,11 @@ option {
 
 @media screen and (min-width: 1000px) {
   .swiper-slide-active {
-    background: #9fb609;
+    background: #85c124;
   }
 
   .swiper-slide-next {
-    background: #578507;
+    background: #619c03;
   }
 }
 
