@@ -9,7 +9,8 @@ import os
 from dotenv import load_dotenv
 from datetime import timedelta
 from fastapi.responses import JSONResponse
-
+import jwt
+from jose import JWTError
 load_dotenv()
 SECRET_KEY = os.getenv("SECRET_KEY")
 ALGORITHM = os.getenv("ALGORITHM")
@@ -74,4 +75,19 @@ async def read_users_me(
     current_user: Annotated[schemas.User, Depends(crud.get_current_active_user)],
 ):
     return current_user
+
+@router.get("/auth/status")
+async def get_auth_status(request: Request):
+    token = request.cookies.get("access_token")
+    if token:
+        try:
+            # 토큰 검증 로직
+            payload = jwt.decode(token, "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiIxMjM0NTY3ODkwIiwibmFtZSI6IkpvaG4gRG9lIiwiaWF0IjoxNTE2MjM5MDIyfQ.SflKxwRJSMeKKF2QT4fwpMeJf36POk6yJV_adQssw5c", algorithms=["HS256"])
+            user_email = payload.get("sub")
+            if user_email:
+                return {"is_authenticated": True}
+        except JWTError:
+            pass
+    return {"is_authenticated": False}
+
 

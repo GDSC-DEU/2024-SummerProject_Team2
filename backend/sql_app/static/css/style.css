@@ -24,19 +24,17 @@ body {
   border-bottom: 10px double #85c124;
   z-index: 999;
 
+  font-size: 0.7rem;
   font-family: "Do Hyeon", sans-serif;
   font-weight: 400;
 }
 
-@media screen and (min-width: 768px) {
-  .nav_contents {
-    max-width: 120rem;
-  }
-}
-
 .nav_contents {
-  padding: 1.2rem 2rem;
-  height: 5.6rem;
+  padding-top: 1rem;
+  padding-bottom: 1rem;
+  padding-left: 0.5rem;
+  padding-right: 0.5rem;
+  height: 4.5rem;
   box-sizing: border-box;
   justify-content: space-between;
   display: flex;
@@ -58,6 +56,7 @@ body {
   list-style: none;
   display: flex;
   gap: 1em;
+  padding-inline-start: 0;
 }
 
 .nav_contents ul li {
@@ -68,11 +67,11 @@ body {
 /* 검색창 */
 .nav_contents .search-container {
   /*width: max-content;*/
-  width: 40%;
+  width: 45vw;
   justify-content: space-between;
   display: flex;
   align-items: center;
-  padding: 14px;
+  padding: 0.7rem 1rem 0.7rem 1rem;
   background: #85c124;
   border-radius: 28px;
 }
@@ -100,22 +99,24 @@ body {
 }
 
 main {
-  padding: 2em;
+  padding: 1em;
   display: flex;
   gap: 2em;
-  padding-top: 8rem;
-  height: auto;
+  padding-top: 6rem;
 }
 
 /* sign in/out main */
 .sign {
-  padding-top: 2rem;
+  padding: 0 1em 0 1em;
+  align-items: center;
   justify-content: center;
+  background-color: #c7e14096;
+  height: 100vh;
 }
 
 .contents {
   width: 100%;
-
+  font-size: 0.6rem;
   font-family: "Nanum Gothic", sans-serif;
   font-weight: 400;
 }
@@ -123,7 +124,7 @@ main {
 /* 요일별 분리수거일 컨테이너 */
 .contents .firstRow {
   width: 100%;
-  height: 440px;
+  height: 35vh;
 }
 
 .contents .firstRow .daily {
@@ -136,12 +137,17 @@ main {
 .swiper-button-prev {
   color: #fff !important;
 }
+.swiper-button-next::after,
+.swiper-button-prev::after {
+  font-size: 1.1rem !important;
+}
 
 /* 대형폐기물, 근처 수거함 */
 .contents .secondRow {
   width: 100%;
-  height: 350px;
+  height: 50vh;
   display: flex;
+  flex-direction: column;
   margin-top: 2em;
   gap: 1em;
 }
@@ -157,7 +163,7 @@ main {
   align-items: center;
   justify-content: center;
   color: white;
-  font-size: 5vw;
+  font-size: 10vw;
   cursor: pointer;
 }
 
@@ -173,12 +179,12 @@ main {
   text-shadow: 5px 5px 5px #dfbe04;
 }
 .imgWrapper {
-  width: 15vw;
+  width: 25vw;
   padding-top: 7%;
   padding-left: -5%;
 }
 .oversizeImg {
-  width: 15vw;
+  width: 25vw;
   padding-top: 15%;
 }
 .battery1 {
@@ -201,7 +207,7 @@ main {
   align-items: center;
   justify-content: center;
   color: white;
-  font-size: 5vw;
+  font-size: 10vw;
   cursor: pointer;
 }
 
@@ -231,42 +237,39 @@ footer a {
   display: flex;
   justify-content: center;
   align-items: center;
+  flex-direction: column;
 }
 
 .swiper-slide {
-  font-size: 40px;
+  font-size: 1.5rem;
 
   background: #9fb609;
-  border-radius: 50px;
+  border-radius: 30px;
   color: white;
 }
 
-.swiper-slide img {
-  display: block;
-  width: 100%;
-  height: 100%;
-  object-fit: cover;
+.swiper-slide > .daily_contents {
+  display: flex;
+  height: 70%;
+  align-items: center;
+
+  font-size: 30px;
+  font-weight: bold;
 }
 
-.swiper-slide-next {
+.swiper-slide-active {
   background: #578507;
-}
-
-@media screen and (max-width: 1000px) {
-  .swiper-slide {
-    background: #9fb609;
-  }
-  .swiper-slide-active {
-    background: #578507;
-  }
 }
 
 /* 로그인 */
 .login-wrapper {
-  width: 400px;
+  width: 80%;
   padding: 40px;
-  box-sizing: border-box;
   border-radius: 30px;
+  height: max-content;
+
+  background-color: #f4f4f4;
+  border-radius: 25px;
 }
 
 .login-wrapper a {
@@ -339,24 +342,28 @@ option {
 }
 
 .nearMain {
-  height: 75vh;
+  height: 80vh;
 }
 
 /* 검색화면 css */
 .left {
-  width: 40vw;
+  width: 100%;
+  text-align: center;
 }
 
 .left > img {
-  width: 40vw;
+  width: 80%;
 }
 
 .right {
   font-family: "Nanum Gothic", sans-serif;
   font-weight: 800;
-  font-size: 1.8vw;
+  font-size: 4vw;
 
   color: #4a4a4a;
+  background-color: #ededed;
+  border-radius: 1em;
+  padding: 0.2em 1em 0.2em 1em;
 }
 
 .right > .recycleAble {
@@ -385,5 +392,154 @@ option {
 }
 
 .S_main {
-  gap: 4em;
+  gap: 0;
+  flex-direction: column;
+}
+
+/* 대형폐기물 텝메뉴 */
+.tab_menu {
+  overflow: hidden;
+  padding: 1px;
+  display: flex;
+  width: 40%;
+}
+.tab_menu > ul {
+  display: flex;
+  padding: 0;
+  margin: 0;
+  list-style: none;
+  flex-grow: 1;
+}
+.tab_menu > ul > li {
+  flex-grow: 1;
+}
+.tab_menu ul li a {
+  display: block;
+  border: #d0d0d0 solid 1px;
+  background-color: #f4f4f4;
+  line-height: 22px;
+  padding: 16px 0;
+  text-align: center;
+  color: #333333;
+  font-weight: 600;
+  text-decoration: none;
+}
+
+.tab_menu ul li.on a,
+.tab_menu ul li a:hover {
+  background-color: #578507;
+  color: #fff;
+}
+
+.ovMain {
+  display: flex;
+  flex-direction: column;
+}
+
+.tab_menu > ul > .active > a {
+  display: block;
+  border: #d0d0d0 solid 1px;
+  background-color: #578507;
+  color: #fff;
+  line-height: 22px;
+  padding: 16px 0;
+  text-align: center;
+  font-weight: 600;
+  text-decoration: none;
+}
+
+@media screen and (min-width: 1000px) {
+  .swiper-slide-active {
+    background: #9fb609;
+  }
+
+  .swiper-slide-next {
+    background: #578507;
+  }
+}
+
+@media screen and (min-width: 768px) {
+  .navBar {
+    font-size: 1rem;
+  }
+
+  .nav_contents {
+    padding: 1.2rem 2rem;
+    height: 5.6rem;
+  }
+
+  /* 검색창 */
+  .nav_contents .search-container {
+    padding: 14px;
+  }
+
+  main {
+    padding: 2em;
+    padding-top: 8rem;
+  }
+
+  /* 요일별 분리수거일 컨테이너 */
+  .contents .firstRow {
+    height: 440px;
+  }
+
+  /* Swiper 좌우 버튼 */
+  .swiper-button-next::after,
+  .swiper-button-prev::after {
+    font-size: 2rem !important;
+  }
+  /* 대형폐기물, 근처 수거함 */
+  .contents .secondRow {
+    height: 350px;
+    flex-direction: row;
+  }
+
+  /* 대형 */
+  .contents .secondRow .oversizedWaste {
+    font-size: 5vw;
+  }
+
+  .imgWrapper {
+    width: 15vw;
+  }
+  .oversizeImg {
+    width: 15vw;
+  }
+
+  /* 근처 */
+  .contents .secondRow .near {
+    font-size: 5vw;
+  }
+
+  .swiper-slide {
+    font-size: 40px;
+  }
+
+  /* 로그인 */
+  .login-wrapper {
+    width: 400px;
+  }
+
+  /* select box 디자인 */
+  .nearMain {
+    height: 75vh;
+  }
+
+  /* 검색화면 css */
+  .left {
+    width: 40vw;
+  }
+
+  .left > img {
+    width: 40vw;
+  }
+
+  .right {
+    font-size: 1.8vw;
+  }
+
+  .S_main {
+    gap: 2em;
+    flex-direction: row;
+  }
 }

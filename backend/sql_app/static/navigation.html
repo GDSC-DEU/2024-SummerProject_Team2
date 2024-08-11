@@ -1,6 +1,6 @@
 <div class="navBar">
   <div class="nav_contents">
-    <a href="/">2팀프젝</a>
+    <a href="/">클린부산</a>
     <div class="search-container">
       <input type="text" id="search" placeholder="이건 어떻게 버리지?" />
       <span
@@ -10,34 +10,61 @@
       >
         search
       </span>
-      <!-- 엔터키 검색 기능 -->
-      <script>
-        function performSearch() {
-          var searchInput = document.getElementById("search");
-          var query = encodeURIComponent(searchInput.value.trim()); // 검색어를 URL 인코딩
-          if (query) {
-            location.href = '/search?query=' + query;
-          } else {
-            // 검색어가 비어있으면 기본 검색 페이지로 이동 (원하는 경우)
-            location.href = '/';
-          }
-        }
-
-        var input = document.getElementById("search");
-
-        input.addEventListener("keyup", function (event) {
-          if (event.keyCode === 13) {
-            event.preventDefault();
-            performSearch();
-          }
-        });
-      </script>
     </div>
     <nav class="nav_link">
-      <ul class="sign_log">
+      <ul id="authLinks" class="sign_log">
         <li><a href="/sign_up">회원가입</a></li>
         <li><a href="/sign_in">로그인</a></li>
       </ul>
     </nav>
   </div>
 </div>
+
+<script>
+  function performSearch() {
+    var searchInput = document.getElementById("search");
+    var query = encodeURIComponent(searchInput.value.trim());
+    if (query) {
+      location.href = '/search?query=' + query;
+    } else {
+      location.href = '/';
+    }
+  }
+
+  var input = document.getElementById("search");
+  input.addEventListener("keyup", function (event) {
+    if (event.keyCode === 13) {
+      event.preventDefault();
+      performSearch();
+    }
+  });
+
+  // 로그인 상태를 확인하고 UI를 업데이트하는 함수
+  async function checkAuthStatus() {
+    const response = await fetch("users/auth/status");
+    const data = await response.json();
+    const authLinks = document.getElementById("authLinks");
+
+    if (data.is_authenticated) {
+      authLinks.innerHTML = `
+        <li><a href="/signout" onclick="logout()">로그아웃</a></li>
+      `;
+    } else {
+      authLinks.innerHTML = `
+        <li><a href="/sign_up">회원가입</a></li>
+        <li><a href="/sign_in">로그인</a></li>
+      `;
+    }
+  }
+
+  // 로그아웃 함수
+  function logout() {
+    fetch("users/signout", { method: "POST" })
+      .then(() => {
+        location.href = "/";
+      });
+  }
+
+  // 페이지 로드 시 로그인 상태 체크
+  window.onload = checkAuthStatus;
+</script>
